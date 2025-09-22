@@ -62,7 +62,7 @@ class Fighter:
         """
         Coup de poing
         """
-        lost_hp = (1*self.get_strenght())-(1*a_fighter.get_agility())
+        lost_hp = (10*self.get_strenght())-(10*a_fighter.get_agility())
         a_fighter._healthPoints -= lost_hp if lost_hp > 0 else 0
         return a_fighter._healthPoints
     
