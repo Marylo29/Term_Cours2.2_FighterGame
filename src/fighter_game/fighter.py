@@ -1,4 +1,4 @@
-from random import randrange
+from random import randrange,choice
 class Fighter:
     """
     La classe d'un fighter
@@ -57,13 +57,26 @@ class Fighter:
         Print les caracteristiques du combattant.
         """
         print(self._def_summary())
+    
+    def is_alive(self):
+        """
+        to know if the fighter is alive
+        Returns:
+            bool: is the fighter alive
+        """
+        return self.get_health() > 0
 
     def punch(self,a_fighter):
         """
         Coup de poing
         """
-        lost_hp = (10*self.get_strenght())-(10*a_fighter.get_agility())
-        a_fighter._healthPoints -= lost_hp if lost_hp > 0 else 0
+        lost_hp = 1*self.get_strenght()
+        is_touch = choice([False]*a_fighter.get_agility() + [True]*(10-a_fighter.get_agility()))
+        if is_touch:
+            if (a_fighter._healthPoints - lost_hp) < 0:
+                a_fighter._healthPoints = 0
+            else:
+                a_fighter._healthPoints -= lost_hp
         return a_fighter._healthPoints
     
     def set_weapon(self,a_weapon):
